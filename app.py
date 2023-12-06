@@ -58,6 +58,6 @@ pred_clas = pipeline_clas.predict(data_para_predecir)
 
 resultado_clas = '**sí** 🌧️' if pred_clas else '**no** 🌞'
 respuesta_reg = 'y' if pred_clas else 'pero'
-resultado_reg  = pred_reg[0].round(2)
+resultado_reg  = round(float(pred_reg[0][0]), 2)
 
 st.markdown(f'Probablemente mañana {resultado_clas} llueva {respuesta_reg} caigan {resultado_reg} mm/h de lluvia.')
