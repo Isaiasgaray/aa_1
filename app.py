@@ -25,10 +25,10 @@ feature_names = pipeline_reg.named_steps['imputer']\
 # no las vamos a usar para la app.
 columnas_numericas = list(df.columns[:-2])
 
-cols_dir = ['WindGustDir', 'WindDir9am', 'WindDir3pm']
+# cols_dir = ['WindGustDir', 'WindDir9am', 'WindDir3pm']
 
-for col in cols_dir:
-    columnas_numericas.remove(col)
+# for col in cols_dir:
+#     columnas_numericas.remove(col)
 
 # Generamos los sliders para
 # cada variable númerica
@@ -57,6 +57,7 @@ pred_clas = pipeline_clas.predict(data_para_predecir)
 # Mostramos las predicciones en la app
 
 resultado_clas = '**sí** 🌧️' if pred_clas else '**no** 🌞'
+respuesta_reg = 'y' if pred_clas else 'pero'
 resultado_reg  = pred_reg[0].round(2)
 
-st.markdown(f'Probablemente mañana {resultado_clas} llueva y caigan {resultado_reg} mm/h de lluvia.')
+st.markdown(f'Probablemente mañana {resultado_clas} llueva {respuesta_reg} caigan {resultado_reg} mm/h de lluvia.')
