@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 
 # Título de la app
-st.title('Predicción de lluvia')
+st.title('Pronóstico de lluvia para mañana')
 
 # Cargamos el dataset para obtener el nombre
 # de las columnas
@@ -42,7 +42,7 @@ features = [st.slider(columna,
 # y la agregamos para la predicción junto a
 # las variables númericas
 raintoday_option_mapping = {'Sí': 1, 'No': 0}
-raintoday_option = st.selectbox('Seleccione RainToday:',
+raintoday_option = st.selectbox('¿Hoy llovió?',
                                 list(raintoday_option_mapping.keys()))
 
 all_features = features + [raintoday_option_mapping[raintoday_option]]
@@ -55,5 +55,8 @@ pred_reg = pipeline_reg.predict(data_para_predecir)
 pred_clas = pipeline_clas.predict(data_para_predecir)
 
 # Mostramos las predicciones en la app
-st.write('Predicción: ', pred_reg.round(2))
-st.write('Predicción: ', pred_clas)
+
+resultado_clas = '**sí** 🌧️' if pred_clas else '**no** 🌞'
+resultado_reg  = pred_reg[0].round(2)
+
+st.markdown(f'Probablemente mañana {resultado_clas} llueva y caigan {resultado_reg} mm/h de lluvia.')
