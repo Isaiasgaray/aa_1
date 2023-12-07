@@ -21,7 +21,7 @@ feature_names = pipeline_reg.named_steps['imputer']\
 
 
 # Definimos los nombres de las variables
-# elimnamos las variable de dirección que 
+# eliminamos las variable de dirección que 
 # no las vamos a usar para la app.
 columnas_numericas = list(df.columns[:-2])
 
